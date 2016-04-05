@@ -3,16 +3,11 @@
  */
 import React from 'react';
 import Router from 'react-router';
+import ReactDOM from 'react-dom';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 import routes from './routes';
-//var React = require('react');
-//var Router = require('react-router');
-//var routes = require('./routes');
+//import Navbar from './components/Navbar';
 
-Router.run(routes, Router.HistoryLocation, function (Handler) {
-    React.render(<Handler />, document.getElementById('app'));
-    //React.render(
-    //    React.createElement('Handler', null, null),
-    //    document.getElementById('app')
-    //)
-});
+let history = createBrowserHistory();
 
+ReactDOM.render(<Router history={history}>{routes}</Router>, document.getElementById('app'));

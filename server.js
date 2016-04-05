@@ -34,7 +34,24 @@ app.use(function (req, res) {
     });
 });
 
-app.listen(app.get('port'),function(){
-    console.log('Express server listening or port ' + app.get('port'));
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+console.log('io defined');
+var onlineUsers = 0;
+io.sockets.on('connection', function (socket) {
+    console.log('connected');
+    onlineUsers++;
+    io.sockets.emit('onlineUsers', {onlineUsers: onlineUsers});
+    socket.on('disconnect', function () {
+        console.log('disconnect');
+        onlineUsers--;
+        io.sockets.emit('onlineUsers', {onlineUsers: onlineUsers});
+    });
 });
+server.listen(app.get('port'), function () {
+    console.log('Express server listening on port ' + app.get('port'));
+});
+/*app.listen(app.get('port'),function(){
+    console.log('Express server listening or port ' + app.get('port'));
+});*/
 

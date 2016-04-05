@@ -50,7 +50,7 @@ class Footer extends React.Component {
                             <p>You may view the <a href="https://github.com/EthanYangHIT/newedenfaces-react">Source
                                 Code</a> behind this project on GitHub.
                             </p>
-                            <p>© 2015 Ethan Yang.</p>
+                            <p>© 2016 Ethan Yang.</p>
                         </div>
                         <div className="col-sm-7 hidden-sx">
                             <h3 className="lead"><strong>Leaderboard</strong>  Top 5 Characters</h3>
