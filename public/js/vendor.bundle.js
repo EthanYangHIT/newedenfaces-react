@@ -14976,10 +14976,6 @@ var ReactEmptyComponentInjection = {
   }
 };
 
-function registerNullComponentID() {
-  ReactEmptyComponentRegistry.registerNullComponentID(this._rootNodeID);
-}
-
 var ReactEmptyComponent = function (instantiate) {
   this._currentElement = null;
   this._rootNodeID = null;
@@ -14988,7 +14984,7 @@ var ReactEmptyComponent = function (instantiate) {
 assign(ReactEmptyComponent.prototype, {
   construct: function (element) {},
   mountComponent: function (rootID, transaction, context) {
-    transaction.getReactMountReady().enqueue(registerNullComponentID, this);
+    ReactEmptyComponentRegistry.registerNullComponentID(rootID);
     this._rootNodeID = rootID;
     return ReactReconciler.mountComponent(this._renderedComponent, rootID, transaction, context);
   },
@@ -19294,7 +19290,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.8';
+module.exports = '0.14.7';
 },{}],145:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -24628,7 +24624,12 @@ var Alt = (function () {
 
 exports['default'] = Alt;
 module.exports = exports['default'];
-},{"../utils/functions":11,"./actions":1,"./store":4,"./utils/AltUtils":5,"./utils/StateFunctions":6,"flux":7}],"react-router":[function(require,module,exports){
+},{"../utils/functions":11,"./actions":1,"./store":4,"./utils/AltUtils":5,"./utils/StateFunctions":6,"flux":7}],"react-dom":[function(require,module,exports){
+'use strict';
+
+module.exports = require('react/lib/ReactDOM');
+
+},{"react/lib/ReactDOM":95}],"react-router":[function(require,module,exports){
 /* components */
 'use strict';
 

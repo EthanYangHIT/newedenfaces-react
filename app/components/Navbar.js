@@ -5,6 +5,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import NavbarStore from '../stores/NavbarStore';
 import NavbarActions from '../actions/NavbarActions';
+//import io from 'socket.io';
 
 class Navbar extends React.Component {
     constructor(props) {
@@ -13,16 +14,13 @@ class Navbar extends React.Component {
         this.onChange = this.onChange.bind(this);
     }
 
-    componentsDidMounts() {
+    componentDidMount() {
         NavbarStore.listen(this.onChange);
-        NavbarActions.getCharactersCount();
-
+        NavbarActions.getCharacterCount();
         let socket = io.connect();
-        console.log('in DidMounts socket defined...');
 
         socket.on('onlineUsers', (data)=> {
-            console.log('in component connect...')
-            NavbarActions.updateOnlineUsers('data');
+            NavbarActions.updateOnlineUsers(data);
         });
 
         $(document).ajaxStart(()=> {
