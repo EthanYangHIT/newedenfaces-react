@@ -4,6 +4,7 @@
 import React from 'react';
 import Footer from './Footer';
 import Navbar from './Navbar';
+//import AddCharacter from './AddCharacter';
 //import {RouteHandler} from 'react-router';
 
 class App extends React.Component {
